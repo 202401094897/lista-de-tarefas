@@ -1,29 +1,64 @@
+let tarefas = [];
+
 function adicionarTarefa() {
-  // cria o input
   const inputTarefa = document.getElementById("inputTarefa");
-  // pega o valor digitado no input
   let tarefa = inputTarefa.value.trim();
 
   const mensagem = document.getElementById("mensagem");
-  // insere o valor digitado no input no objeto html
 
-  // se o valor do input for vazio, mostre uma mensagem de erro
   if (tarefa == "") {
-    let mensagemErro = "Digite um valor";
+    let mensagemErro = "Digite uma tarefa para adicioná-la a sua lista!";
     mensagem.textContent = mensagemErro;
   } else {
     let mensagemSucesso = "Tarefa adicionada com sucesso!";
     mensagem.textContent = mensagemSucesso;
+    tarefas.push(tarefa);
+    renderizarTarefas();
+  }
 
-    // pega o elemento ul e joga para o JS
-    const listaTarefas = document.getElementById("listaTarefas");
-    // cria um elemento li e atribui à variável novaTarefa
+  inputTarefa.value = "";
+}
+
+function renderizarTarefas() {
+  const listaTarefas = document.getElementById("listaTarefas");
+  listaTarefas.innerHTML = "";
+
+  for (let i = 0; i < tarefas.length; i++) {
     let novaTarefa = document.createElement("li");
-    // atribui o valor tarefa ao texto da novaTarefa
-    novaTarefa.textContent = tarefa;
-    // acrescenta elementos li dentro da ul
+    novaTarefa.textContent = tarefas[i];
+
+    let botaoRemover = document.createElement("button");
+    botaoRemover.className = "remover";
+    botaoRemover.textContent = "Remover";
+    botaoRemover.onclick = () => removerTarefa(i);
+
+    novaTarefa.appendChild(botaoRemover);
+    listaTarefas.appendChild(novaTarefa);
+
+    let botaoEditar = document.createElement("button");
+    botaoEditar.className = "editar";
+    botaoEditar.textContent = "Editar";
+    botaoEditar.onclick = () => editarTarefa(i);
+
+    novaTarefa.appendChild(botaoEditar);
     listaTarefas.appendChild(novaTarefa);
   }
-  // quando inclui uma nova tarefa, deixa o valor do campo vazio novamente.
-  inputTarefa.value = "";
+}
+
+function removerTarefa(i) {
+  tarefas.splice(i, 1);
+  renderizarTarefas();
+}
+function editarTarefa(i) {
+  let tarefaEditada = prompt("Edite a tarefa: ");
+  if (tarefaEditada.trim() !== "") {
+    tarefas[i] = tarefaEditada;
+    renderizarTarefas();
+  }
+}
+function limparLista() {
+  tarefas.length = 0;
+  renderizarTarefas();
+  const mensagem = document.getElementById("mensagem");
+  mensagem.textContent = "Lista de tarefas limpa com sucesso!";
 }
