@@ -51,7 +51,7 @@ ul {
 }
 
 ul li {
-  background-color: #714adc;
+  background-color: #aa96e2;
   color: #261750;
   padding: 10%;
   margin: 5px 0;
@@ -73,7 +73,39 @@ input[type="text"] {
   transition: border-color 0.3s ease;
 }
 
+button.remover {
+  background-color: aliceblue;
+  color: #261750;
+  padding: 5px, 5px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.6em;
+  margin-left: 5px;
+  transition: background-color 0.3s ease;
+}
+
+button.remover:hover {
+  background-color: #4f1281;
+}
+
+button.editar {
+  background-color: aliceblue;
+  color: #261750;
+  padding: 5px, 5px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.6em;
+  margin-left: 5px;
+  transition: background-color 0.3s ease;
+}
+
+button.editar:hover {
+  background-color: #4f1281;
+}
+
 input[type="text"]:focus {
-  border-color: #370460;
+  border-color: #4f1281;
   box-shadow: inset 0 2px 4px rgba(123, 29, 173, 0.3);
 }
